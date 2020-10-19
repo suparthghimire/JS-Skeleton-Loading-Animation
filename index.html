@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+</head>
+
+<body>
+    <form id="search">
+        <input type="text" id="uname" class="username-input" placeholder="Enter User Name">
+        <button class="btn">
+            <i class="fas fa-search"></i>
+        </button>
+    </form>
+    <div class="profile-container">
+        <div class="profile-image loading">
+        </div>
+        <h2 class="username loading"></h2>
+        <div class="profile-info">
+            <p class="info followers loading">
+                <span id="followers">
+
+                </span></p>
+            <p class="info repositories loading">
+                <span id="repositories_data">
+
+                </span></p>
+            <p class="info following loading">
+                <span id="following">
+
+                </span></p>
+        </div>
+        <div class="overlay">
+            User Doesn't Exist
+        </div>
+    </div>
+
+</body>
+
+<script src=" index.js "></script>
+
+</html>
