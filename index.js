@@ -19,12 +19,14 @@ form.addEventListener("submit", (e) => {
 // functions
 
 const renderOutput = ({ name, followers, following, repositories }) => {
-  console.log({ name, followers, following, repositories });
-
   username.innerText = name;
   repository_count.innerText = `${repositories} Public Repositories`;
   followers_count.innerText = `${followers} Followers`;
   following_count.innerText = `${following} Following`;
+  removeSkeleton();
+};
+
+const removeSkeleton = () => {
   profileImg.classList.remove("loading");
   username.classList.remove("loading");
   followers_count.parentElement.classList.remove("loading");
@@ -40,9 +42,8 @@ const createImage = (src) => {
   profileImg.appendChild(img);
 };
 
-const apiCall = async (uname) => {
+const apiCall = (uname) => {
   const API = `https://api.github.com/users/${uname}`;
-
   fetch(API)
     .then((response) => response.json())
     .then((data) => {
@@ -59,10 +60,14 @@ const apiCall = async (uname) => {
       error_overlay.style.visibility = "hidden";
     })
     .catch((e) => {
-      const src = "https://i.ibb.co/N3cmDhB/Img.png";
-      createImage(src);
-      error_overlay.style.visibility = "visible";
+      enableOverlay();
     });
+};
+
+const enableOverlay = () => {
+  const src = "https://i.ibb.co/N3cmDhB/Img.png";
+  createImage(src);
+  error_overlay.style.visibility = "visible";
 };
 
 const clearFields = () => {
@@ -71,7 +76,10 @@ const clearFields = () => {
   followers_count.innerHTML = null;
   following_count.innerHTML = null;
   repository_count.innerHTML = null;
+  addSkeleton();
+};
 
+const addSkeleton = () => {
   profileImg.classList.add("loading");
   username.classList.add("loading");
   followers_count.parentElement.classList.add("loading");
